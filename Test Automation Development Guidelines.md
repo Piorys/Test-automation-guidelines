@@ -20,6 +20,10 @@ This document was created in order to unify test automation development on [PROJ
 
 ![Workflow](Assets/workflow.png)
 
+**Legend:**
+- **Review and Test of scripts** - Code created during automation of user story is reviewed both by static code review, and by dynamic review during execution of scenarios agains the environment.
+- **Integration Tests off multiple US** - All Test Cases developed  are executed at once in functional groups (iteration/suites) in order to check potential conflicts 
+
 **Steps:**
 1. Test Team designates user stories for automation, distrtibutes it within team.
 2. Test Developer clones repository to local machine or pulls newest code.
