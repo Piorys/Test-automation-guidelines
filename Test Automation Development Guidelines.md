@@ -40,4 +40,88 @@ This document was created in order to unify test automation development on [PROJ
 - Direct pushing to master branch is **forbidden**. Master branch can only be updated by merging with develop branch
 - Direct pushing to develop branch is **unadvisable**. On edge cases such as typo fix during steps 7 or 9 pushing is allowed after consulting with Test Team Lead
 
+## Coding standards
+
+### Variables
+- Variable names need to be meaningfull
+examples:
+```
+String successMessage; - GOOD
+String sm; - BAD
+
+ProductListPage productListPage; - GOOD
+ProductListPage plp; - BAD
+```
+- All names need to be written in camelCase style
+
+Beginning with the prose form of the name:
+
+From [Google Java Style Guide](https://google.github.io/styleguide/javaguide.html#s5.3-camel-case) 
+
+- Convert the phrase to plain ASCII and remove any apostrophes. For example, "Müller's algorithm" might become "Muellers algorithm".
+- Divide this result into words, splitting on spaces and any remaining punctuation (typically hyphens).
+    Recommended: if any word already has a conventional camel-case appearance in common usage, split this into its constituent parts (e.g., "AdWords" becomes "ad words"). Note that a word such as "iOS" is not really in camel case per se; it defies any convention, so this recommendation does not apply.
+- Now lowercase everything (including acronyms), then uppercase only the first character of:
+... each word, to yield upper camel case, or
+... each word except the first, to yield lower camel case
+- Finally, join all the words into a single identifier.
+
+ Examples:
+
+ - "my account page" -> myAccountPage  
+ - "wait for loader" -> waitForLoader
+
+### Page/Component Objects
+
+- Whenever element of the page is seen on multiple pages, consider making it an component object, ie - upperbar/footer 
+- When naming new page/component object finish start it with its type, ie - ComponentUpperbar or PageMyAccount
+- Keep Component Objects and Page Objects in separate directories
+- Keep following scheme of the Page Object or Component Object
+
+```java
+/**  package statement */
+package pageobjects;
+/** importing java-related packages */
+import java.util.list;
+/** importing test related packages */
+import org.openqa.selenium.By;
+/** importing frameworks proprietary packages */
+import x.y.z.utilities.selenium.pageobjects.BasePO;
+import x.y.z.utilities.selenium.pageobjects.Element;
+import x.y.z.utilities.common.Reporter;
+public class ComponentMinicart extends BasePo {
+    /** locators */
+	private By cartTitle = By.xpath("//*[contains(@class,'title cc_title')]");
+    private By nextButton = By.css('button[name="continue"]')
+
+    /** if function is more complex than jsut returning the text, add comment with following scheme:
+        Scope: [Concise information about what function does]
+        Accepts: [What function accepts as param]
+        Returns: [What is returned]
+      */
+    public String function getCartTitle(){
+        // Log 
+        Reporter.addStepLog("Getting Cart Title");
+        // Element
+        WebElement cartTitleElement = findElement(cartTitle,5);
+        // Action 
+        return cartTitle.getText()
+    }
+
+    public void function clickNextButton(){
+        // Log
+        Reporter.addStepLog("Clicking on 'next' button");
+        // Element
+        WebElement nextButtonElement = findElement(nextButton,5);
+        // Action
+        nextButtonElement.click();
+    }
+}
+```
+
+- Each function should comply with structure as shown above, keep comments as in example. 
+General rules for Page/Component Objects:
+- Parametrise as much as possible within reason, hardcoding information is not advisable.
+- Each Page/Component object needs to be completely separate from other Page/Component objects.
+
 
