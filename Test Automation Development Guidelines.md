@@ -89,17 +89,20 @@ import org.openqa.selenium.By;
 import x.y.z.utilities.selenium.pageobjects.BasePO;
 import x.y.z.utilities.selenium.pageobjects.Element;
 import x.y.z.utilities.common.Reporter;
+
+
 public class ComponentMinicart extends BasePo {
     /** locators */
 	private By cartTitle = By.xpath("//*[contains(@class,'title cc_title')]");
     private By nextButton = By.css('button[name="continue"]')
+    private By commentField = By.css('input[name="orderComments"]')
 
     /** if function is more complex than jsut returning the text, add comment with following scheme:
         Scope: [Concise information about what function does]
         Accepts: [What function accepts as param]
         Returns: [What is returned]
       */
-    public String function getCartTitle(){
+    public String getCartTitle(){
         // Log 
         Reporter.addStepLog("Getting Cart Title");
         // Element
@@ -108,7 +111,17 @@ public class ComponentMinicart extends BasePo {
         return cartTitle.getText()
     }
 
-    public void function clickNextButton(){
+    public void fillCommentField(String comment){
+        // Log
+        Reporter.addStepLog("Filling order comment field with "+comment);
+        // Element
+        WebElement commentFieldElement = findElement(commentField,5);
+        // Action
+        commentFieldElement.sendKeys(comment);
+    }
+
+
+    public void clickNextButton(){
         // Log
         Reporter.addStepLog("Clicking on 'next' button");
         // Element
@@ -123,5 +136,16 @@ public class ComponentMinicart extends BasePo {
 General rules for Page/Component Objects:
 - Parametrise as much as possible within reason, hardcoding information is not advisable.
 - Each Page/Component object needs to be completely separate from other Page/Component objects.
+- Keep functions as granular as possible within reason, keep Single Responsibility Principle in mind. One function should do exactly one thing. Functions can be grouped in one in accordance to business logic if needed, ie 
+```java
+public void passCredentialsAndLogin(String username, String password){
+    // Log
+    Reporter.addStepLog("Passing credentials and clicking 'login'");
+    // Action
+    this.fillUsername(username);
+    this.fillPassword(password);
+    this.clickLoginButton();
+}  
+```
 
 
