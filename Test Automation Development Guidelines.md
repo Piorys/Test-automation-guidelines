@@ -51,12 +51,11 @@ Framework should utilise Page Object Model pattern with extension of Component O
 - Data Objects can be used only on level on step definitions
 - Step definitions can interact with Page/Component Objects
 
-
 ## Coding standards
 
 ### Variables
-- Variable names need to be meaningfull
-examples:
+- Variable names need to be meaningfull and descriptive  
+  
 ```
 String successMessage; - GOOD
 String sm; - BAD
@@ -66,9 +65,9 @@ ProductListPage plp; - BAD
 ```
 - All names need to be written in camelCase style
 
-Beginning with the prose form of the name:
-
 From [Google Java Style Guide](https://google.github.io/styleguide/javaguide.html#s5.3-camel-case) 
+
+Beginning with the prose form of the name:
 
 - Convert the phrase to plain ASCII and remove any apostrophes. For example, "Müller's algorithm" might become "Muellers algorithm".
 - Divide this result into words, splitting on spaces and any remaining punctuation (typically hyphens).
@@ -144,9 +143,27 @@ public class ComponentMinicart extends BasePo {
 }
 ```
 
-- Each function should comply with structure as shown above, keep comments as in example. 
+- Each function should comply with structure as shown above, keep comments as in example.  
+  
 General rules for Page/Component Objects:
 - Parametrise as much as possible within reason, hardcoding information is not advisable.
+- If selector relies on some data that could change, consider creating a function that will return desired object  
+example:
+```java
+// Unadvisable
+private By profileName = By.xpath("//button[@id='userDropdown']//span//span[@class='invitation'][contains(text(),'Magda')]");
+
+// Better put it within function
+
+public By getProfileNameByElement(String profileName){
+    // Log
+    Reporter.addStepLog("Constructing 'By' element for profile name");
+    // Element
+    String locator = "//button[@id='userDropdown']//span//span[@class='invitation'][contains(text(),'" + profileName + "')]";
+    // Action
+    return By.xpath(locator);
+}
+```
 - Each Page/Component object needs to be completely separate from other Page/Component objects.
 - Keep functions as granular as possible within reason, keep Single Responsibility Principle in mind. One function should do exactly one thing. Functions can be grouped in one in accordance to business logic if needed, ie 
 
@@ -161,5 +178,29 @@ public void passCredentialsAndLogin(String username, String password){
     this.clickLoginButton();
 }  
 ```
+
+### Step Definition Files
+
+Step definition file is meeting point of scenario and all logic implemented within component/page objects. Within this level we are calling the actions defined within lower levels of logic structure. 
+  
+General rules:
+- It is firmly advised to not hardcode any data within this level, utilise data objects instead.
+- Within push how down narrative, data is passed to page/component objects functions. 
+- Assertions are to be made within step definition level, gather data by functions from page/component objects and compare them using [testNG Assert](https://static.javadoc.io/org.testng/testng/6.8.17/org/testng/Assert.html) library 
+```java
+@Then("^I will see success message about address update")
+	public void iWillSeeSuccessMessageAboutAddressUpdate() throws InterruptedException  {
+		// Get expected value - TBD
+        String expectedMessage = dataParser
+        // Get actual value
+        String actualMessage = accountDashboard.getSuccessMessage();
+        // Assert values
+        Assert.assertEquals(expectedMessage,actualMessage);
+	}
+```
+- Data are to be obtained from data objects using DataParser tool (*TBD*)
+- 
+
+
 
 
