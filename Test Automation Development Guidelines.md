@@ -40,6 +40,18 @@ This document was created in order to unify test automation development on [PROJ
 - Direct pushing to master branch is **forbidden**. Master branch can only be updated by merging with develop branch
 - Direct pushing to develop branch is **unadvisable**. On edge cases such as typo fix during steps 7 or 9 pushing is allowed after consulting with Test Team Lead
 
+## Framework structure
+
+Framework should utilise Page Object Model pattern with extension of Component Object approach for better flexibility. Complexity within code strtucture should be pushed down with compliance to [Push how down principle](https://markoh.co.uk/posts/cucumber-best-practices-push-how-down) 
+
+![Structure](Assets/logicStructure.png)
+
+**Each layer may interact only to one below it**
+- Feature Files can interact with step definitions
+- Data Objects can be used only on level on step definitions
+- Step definitions can interact with Page/Component Objects
+
+
 ## Coding standards
 
 ### Variables
@@ -137,6 +149,8 @@ General rules for Page/Component Objects:
 - Parametrise as much as possible within reason, hardcoding information is not advisable.
 - Each Page/Component object needs to be completely separate from other Page/Component objects.
 - Keep functions as granular as possible within reason, keep Single Responsibility Principle in mind. One function should do exactly one thing. Functions can be grouped in one in accordance to business logic if needed, ie 
+
+
 ```java
 public void passCredentialsAndLogin(String username, String password){
     // Log
