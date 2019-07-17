@@ -195,7 +195,7 @@ General rules:
         // Get actual value
         String actualMessage = accountDashboard.getSuccessMessage();
         // Assert values
-        Assert.assertEquals(expectedMessage,actualMessage);
+        Assert.assertEquals(actualMessage,expectedMessage);
 	}
 ```
 - Data are to be obtained from data objects using DataParser tool (*TBD*)
