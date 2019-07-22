@@ -71,17 +71,18 @@ General rules for Page/Component Objects:
 
   // Unadvisable
 
-  private By profileName = By.xpath\("//button\[@id='userDropdown'\]//span//span\[@class='invitation'\]\[contains\(text\(\),'Magda'\)\]"\);
+  private By profileName = By.xpath\("//button[@id='userDropdown']//span//span[@class='invitation'][contains(text(),'Magda')]");
 
-// Better put it within function
+    // Better put it within function
 
-public By getProfileNameByElement\(String profileName\){ 
-    // Log 
-    Reporter.addStepLog\("Constructing 'By' element for profile name"\); 
-    // Element 
-    String locator = "//button\[@id='userDropdown'\]//span//span\[@class='invitation'\]\[contains\(text\(\),'" + profileName + "'\)\]"; 
-    // Action 
-    return By.xpath(locator); }
+    public By getProfileNameByElement(String profileName){ 
+        // Log 
+        Reporter.addStepLog\("Constructing 'By' element for profile name"\); 
+        // Element 
+        String locator = "//button[@id='userDropdown']/span/span\[@class='invitation'][contains(text(),'" + profileName + "')]"; 
+        // Action 
+        return By.xpath(locator); 
+        }
 
 ```
 
