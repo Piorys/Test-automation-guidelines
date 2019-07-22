@@ -8,3 +8,5 @@ Framework should utilize Page Object Model pattern with extension of Component O
 - Feature Files can interact with step definitions
 - Data Objects can be used only on level on step definitions
 - Step definitions can interact with Page/Component Objects
+
+ [<- Go Back](../Readme.md)

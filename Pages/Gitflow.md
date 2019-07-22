@@ -11,3 +11,5 @@
 - **Fix Branch** - *Ad hoc* branch created in case of failed integration testing of batch of user stories. For each fix new branch should be created with compliance to naming convention as below:
 
 ```US_[Numbers] int fix ex. US_1,2,3,4 int fix```
+  
+   [<- Go Back](../Readme.md)

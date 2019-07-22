@@ -27,3 +27,5 @@ General rules:
     }
 ```
 - Data are to be obtained from data objects using DataParser tool (*TBD*)
+  
+   [<- Go Back](../Readme.md)
