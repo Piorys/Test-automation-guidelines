@@ -22,7 +22,7 @@ This document was created in order to unify test automation development on [PROJ
 
 **Legend:**
 - **Review and Test of scripts** - Code created during automation of user story is reviewed both by static code review, and by dynamic review during execution of scenarios agains the environment.
-- **Integration Tests off multiple US** - All Test Cases developed  are executed at once in functional groups (iteration/suites) in order to check potential conflicts 
+- **Integration Tests of multiple US** - All Test Cases developed are executed at once in functional groups (iteration/suites) in order to check potential conflicts 
 
 **Steps:**
 1. Test Team designates user stories for automation, distrtibutes it within team.
@@ -76,22 +76,87 @@ Beginning with the prose form of the name:
 ... each word, to yield upper camel case, or
 ... each word except the first, to yield lower camel case
 - Finally, join all the words into a single identifier.
+  
+ Examples:  
+```
+ "my account page" -> myAccountPage  
+ "wait for loader" -> waitForLoader
+```
+  
+- Class-scoped variables should have private access only and be initialised within constructor method
+```java
+class SomeClass{
+    private loginPage;
+    private checkoutPage;
 
- Examples:
+    /** Contructor*/
+    public SomeClass(){
+        loginPage = new PageLogin();
+        checkoutPage = new PageCheckout();
+    }
+}
+```
 
- - "my account page" -> myAccountPage  
- - "wait for loader" -> waitForLoader
+### Function names
+- Function name should clearly, without ambiguity indicate what given it does, so you dont have to jump across the code to find truth. 
+- Every function is an action, therefore name should contain at least one verb that adheres to function usage.  
+- Like variables, functions should utilise camelCase writing convention.
+  
+  examples:
+```java
+isSomethingvisible();
+clickOnSomeButton(); 
+getThatPageMessageValue();
+doubleClickThatButton();
+fillThisInput();
+selectValueFromAccountDropdown();
+switchToIFrame();
+```
+
+### Class names
+- Class names should be written using MixedCase, with every word having first letter capitalised
+```java
+class SomeClass extends AnotherClass implements YetAnotherClass{
+
+}
+```
+
+### Packages
+- As per [Oracle](https://docs.oracle.com/javase/tutorial/java/package/namingpkgs.html) standards packages should be written in all lowercase, using dot as a separator which shall group objects functionally in appropriate package directories.  
+  
+  Example usage:
+  ```java
+  import objects.component.Minicart;
+  import objects.page.Checkout;
+  ```
+
+  Directory structure:
+  ```
+  |--objects:  
+        |--component  
+            |--Minicart  
+        |--page  
+            |--Checkout  
+```
+
+### Brackets
+
+- Use [egyptian-styled](https://blog.codinghorror.com/new-programming-jargon/) brackets whenever possible  
+```java
+public static someFunction(){
+
+}
+```
 
 ### Page/Component Objects
 
 - Whenever element of the page is seen on multiple pages, consider making it an component object, ie - upperbar/footer 
-- When naming new page/component object finish start it with its type, ie - ComponentUpperbar or PageMyAccount
 - Keep Component Objects and Page Objects in separate directories
 - Keep following scheme of the Page Object or Component Object
 
 ```java
 /**  package statement */
-package pageobjects;
+package objects.component;
 /** importing java-related packages */
 import java.util.list;
 /** importing test related packages */
@@ -102,13 +167,13 @@ import x.y.z.utilities.selenium.pageobjects.Element;
 import x.y.z.utilities.common.Reporter;
 
 
-public class ComponentMinicart extends BasePo {
+public class Minicart extends BasePo {
     /** locators */
 	private By cartTitle = By.xpath("//*[contains(@class,'title cc_title')]");
     private By nextButton = By.css('button[name="continue"]')
     private By commentField = By.css('input[name="orderComments"]')
 
-    /** if function is more complex than jsut returning the text, add comment with following scheme:
+    /** if function is more complex than just for example returning the text or clicking an simple button, add comment with following scheme:
         Scope: [Concise information about what function does]
         Accepts: [What function accepts as param]
         Returns: [What is returned]
@@ -187,20 +252,57 @@ General rules:
 - It is firmly advised to not hardcode any data within this level, utilise data objects instead.
 - Within push how down narrative, data is passed to page/component objects functions. 
 - Assertions are to be made within step definition level, gather data by functions from page/component objects and compare them using [testNG Assert](https://static.javadoc.io/org.testng/testng/6.8.17/org/testng/Assert.html) library 
+
 ```java
-@Then("^I will see success message about address update")
+@Then("^User will see success message about address update")
 	public void iWillSeeSuccessMessageAboutAddressUpdate() throws InterruptedException  {
-		// Get expected value - TBD
+	// Get expected value - TBD
         String expectedMessage = dataParser
         // Get actual value
         String actualMessage = accountDashboard.getSuccessMessage();
         // Assert values
         Assert.assertEquals(actualMessage,expectedMessage);
 	}
+
+@Then("^User will not see lite search bar")
+    public void userWillNotSeeLiteSearchBar()throws InterruptedException{
+        // Get boolean value of element visibility
+        Boolean isLogoVisible = upperbar.isLogoVisible();
+        // Assert value
+        Assert.assertFalse(isLogoVisible);
+    }
 ```
 - Data are to be obtained from data objects using DataParser tool (*TBD*)
-- 
 
+### Data Objects
 
+To utilise **Data Driven Testing** approach, it is advised to utilise data objects to allow maximum versatility of tests. By switching data objects we can manipulate how the test should behave.
+
+Data objects are .json files that store all neccessary data for the test execution such as:
+- Credentials
+- Environments (*TBC*)
+- Product informations
+- Expected page messages
+...
+  
+Every data object should be within a separate .json file grouped in functional scope (per scenario) or component-scope (per functional component, ie - products, credentials, page messages)
+
+Example Data Object:
+```
+{
+    "Customer":{
+        "Username":"xyz@gmail.com"
+        "Password":"Some_P@$$word2137_!"
+    },
+    "Admin":{
+        "Username":"admin@domain.com",
+        "Password":"Fz#@124kjiy*&(gG"
+    }
+}
+```
+
+#### Data Parser
+
+TDB
 
 
