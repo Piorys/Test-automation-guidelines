@@ -72,10 +72,10 @@ class SomeClass extends AnotherClass implements YetAnotherClass{
 As per [Oracle](https://docs.oracle.com/javase/tutorial/java/package/namingpkgs.html) standards packages should be written in all lowercase, using dot as a separator which shall group them functionally in appropriate package directories.  
   
   Example usage:
-  ```java
+```java
   import objects.component.Minicart;
   import objects.page.Checkout;
-  ```
+```
 
   Directory structure:
 ```
