@@ -75,7 +75,13 @@ General rules for Page/Component Objects:
 
 // Better put it within function
 
-public By getProfileNameByElement\(String profileName\){ // Log Reporter.addStepLog\("Constructing 'By' element for profile name"\); // Element String locator = "//button\[@id='userDropdown'\]//span//span\[@class='invitation'\]\[contains\(text\(\),'" + profileName + "'\)\]"; // Action return By.xpath\(locator\); }
+public By getProfileNameByElement\(String profileName\){ 
+    // Log 
+    Reporter.addStepLog\("Constructing 'By' element for profile name"\); 
+    // Element 
+    String locator = "//button\[@id='userDropdown'\]//span//span\[@class='invitation'\]\[contains\(text\(\),'" + profileName + "'\)\]"; 
+    // Action 
+    return By.xpath(locator); }
 
 ```
 
