@@ -94,5 +94,3 @@ public static someFunction(){
 
 }
 ```
-  
-[<- Go Back](../Readme.md)

@@ -22,4 +22,3 @@
 - Direct pushing to master branch is **forbidden**. Master branch can only be updated by merging with develop branch
 - Direct pushing to develop branch is **inadvisable**. On edge cases such as typo fix during steps 7 or 9 pushing is allowed after consulting with Test Team Lead
 
-   [<- Go Back](../Readme.md)

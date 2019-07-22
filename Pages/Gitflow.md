@@ -12,4 +12,3 @@
 
 ```US_[Numbers] int fix ex. US_1,2,3,4 int fix```
   
-   [<- Go Back](../Readme.md)
