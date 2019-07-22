@@ -2,14 +2,14 @@
 
 This document was created in order to unify test automation development on [PROJECT] project.
 
-## Gitflow
+## Workflow
 
 ![Gitflow](Assets/gitflow.png)
 
 **Branches:** 
 - **Master Branch** - Main branch of the repository, only User Stories automation that has been validated and tested can reside within it.
 - **Develop Branch** - Transitory branch of the repository, place for User Stories that were scripted but not tested in integration. 
-- **User Story Branch** - Working branch, for each User Story new branch should be created with complaince to naming convention as below: 
+- **User Story Branch** - Working branch, for each User Story new branch should be created with compliance to naming convention as below: 
 
 ``` US_[Number] [Jira ticket ID] ex. US_1 ECOMM_1234 ```
 - **Fix Branch** - *Ad hoc* branch created in case of failed integration testing of batch of user stories. For each fix new branch should be created with compliance to naming convention as below:
@@ -21,28 +21,28 @@ This document was created in order to unify test automation development on [PROJ
 ![Workflow](Assets/workflow.png)
 
 **Legend:**
-- **Review and Test of scripts** - Code created during automation of user story is reviewed both by static code review, and by dynamic review during execution of scenarios agains the environment.
+- **Review and Test of scripts** - Code created during automation of user story is reviewed both by static code review, and by dynamic review during execution of scenarios against the environment.
 - **Integration Tests of multiple US** - All Test Cases developed are executed at once in functional groups (iteration/suites) in order to check potential conflicts 
 
 **Steps:**
-1. Test Team designates user stories for automation, distrtibutes it within team.
+1. Test Team designates user stories for automation, distributes it within team. 
 2. Test Developer clones repository to local machine or pulls newest code.
 3. Test Developer creates User Story branch from Develop Branch 
 4. Test Developer develops automated test cases for given user story
 5. Test Developer opens pull request to develop branch
-6. Test Team Lead or designated Test Developer performs code review and executes created test cases agains environment
-7. If Code Review and Test is passed successfully, pull request is accepted and codebase is merged to develop branch. If Code Review or Test fails, Test Developer introduces neccesary changes and step 6 is repeated.
+6. Test Team Lead or designated Test Developer performs code review and executes created test cases against environment
+7. If Code Review and Test is passed successfully, pull request is accepted and codebase is merged to develop branch. If Code Review or Test fails, Test Developer introduces necessary changes and step 6 is repeated.
 8. After gathering all user stories from designated batch (see pt 1) Test Team Lead or designated Test Developer performs integration testing by executing all automated test cases against environment. 
-9. If Integration Test passes, codebase is merged with Master branch with appropriate tag. If Integration Test fails, Test Team Lead or designated Test Developer creates fix branch and introduces neccesary changes, and step 8 is repeated.
+9. If Integration Test passes, codebase is merged with Master branch with appropriate tag. If Integration Test fails, Test Team Lead or designated Test Developer creates fix branch and introduces necessary changes, and step 8 is repeated.
 
 
 **Rules** 
 - Direct pushing to master branch is **forbidden**. Master branch can only be updated by merging with develop branch
-- Direct pushing to develop branch is **unadvisable**. On edge cases such as typo fix during steps 7 or 9 pushing is allowed after consulting with Test Team Lead
+- Direct pushing to develop branch is **inadvisable**. On edge cases such as typo fix during steps 7 or 9 pushing is allowed after consulting with Test Team Lead
 
 ## Framework structure
 
-Framework should utilise Page Object Model pattern with extension of Component Object approach for better flexibility. Complexity within code strtucture should be pushed down with compliance to [Push how down principle](https://markoh.co.uk/posts/cucumber-best-practices-push-how-down) 
+Framework should utilize Page Object Model pattern with extension of Component Object approach for better flexibility. Complexity within code structure should be pushed down with compliance to [Push how down principle](https://markoh.co.uk/posts/cucumber-best-practices-push-how-down) 
 
 ![Structure](Assets/logicStructure.png)
 
@@ -54,7 +54,7 @@ Framework should utilise Page Object Model pattern with extension of Component O
 ## Coding standards
 
 ### Variables
-- Variable names need to be meaningfull and descriptive  
+- Variable names need to be meaningful and descriptive  
   
 ```
 String successMessage; - GOOD
@@ -69,9 +69,9 @@ From [Google Java Style Guide](https://google.github.io/styleguide/javaguide.htm
 
 Beginning with the prose form of the name:
 
-- Convert the phrase to plain ASCII and remove any apostrophes. For example, "Müller's algorithm" might become "Muellers algorithm".
+- Convert the phrase to plain ASCII and remove any apostrophes. For example, "Muller's algorithm" might become "Mueller algorithm".
 - Divide this result into words, splitting on spaces and any remaining punctuation (typically hyphens).
-    Recommended: if any word already has a conventional camel-case appearance in common usage, split this into its constituent parts (e.g., "AdWords" becomes "ad words"). Note that a word such as "iOS" is not really in camel case per se; it defies any convention, so this recommendation does not apply.
+    Recommended: if any word already has a conventional camel-case appearance in common usage, split this into its constituent parts (e.g., "sWords" becomes "ad words"). Note that a word such as "iOS" is not really in camel case per se; it defies any convention, so this recommendation does not apply.
 - Now lowercase everything (including acronyms), then uppercase only the first character of:
 ... each word, to yield upper camel case, or
 ... each word except the first, to yield lower camel case
@@ -83,7 +83,7 @@ Beginning with the prose form of the name:
  "wait for loader" -> waitForLoader
 ```
   
-- Class-scoped variables should have private access only and be initialised within constructor method
+- Class-scoped variables should have private access only and be initialized within constructor method
 ```java
 class SomeClass{
     private loginPage;
@@ -98,9 +98,9 @@ class SomeClass{
 ```
 
 ### Function names
-- Function name should clearly, without ambiguity indicate what it does, so you dont have to jump across the code to find truth. 
-- Every function is an action, therefore name should contain at least one verb that adheres to function usage.  
-- Like variables, functions should utilise camelCase writing convention.
+- Function name should clearly, without ambiguity indicate what it does, so you don't have to jump across the code to find truth. 
+- Every function is an action, therefore name should contain at least one verb that adheres to said action.  
+- Like variables, functions should utilize camelCase writing convention.
   
   examples:
 ```java
@@ -114,7 +114,7 @@ switchToIFrame();
 ```
 
 ### Class names
-- Class names should be written using MixedCase, with every word having first letter capitalised
+- Class names should be written using MixedCase, with every word having first letter capitalized
 ```java
 class SomeClass extends AnotherClass implements YetAnotherClass{
 
@@ -122,7 +122,7 @@ class SomeClass extends AnotherClass implements YetAnotherClass{
 ```
 
 ### Packages
-- As per [Oracle](https://docs.oracle.com/javase/tutorial/java/package/namingpkgs.html) standards packages should be written in all lowercase, using dot as a separator which shall group objects functionally in appropriate package directories.  
+As per [Oracle](https://docs.oracle.com/javase/tutorial/java/package/namingpkgs.html) standards packages should be written in all lowercase, using dot as a separator which shall group them functionally in appropriate package directories.  
   
   Example usage:
   ```java
@@ -131,7 +131,7 @@ class SomeClass extends AnotherClass implements YetAnotherClass{
   ```
 
   Directory structure:
-  ```
+```
   |--objects:  
         |--component  
             |--Minicart  
@@ -211,7 +211,7 @@ public class Minicart extends BasePo {
 - Each function should comply with structure as shown above, keep comments as in example.  
   
 General rules for Page/Component Objects:
-- Parametrise as much as possible within reason, hardcoding information is not advisable.
+- Parametrize as much as possible within reason, hard coding information is not advisable.
 - If selector relies on some data that could change, consider creating a function that will return desired object  
 example:
 ```java
@@ -249,7 +249,7 @@ public void passCredentialsAndLogin(String username, String password){
 Step definition file is meeting point of scenario and all logic implemented within component/page objects. Within this level we are calling the actions defined within lower levels of logic structure. 
   
 General rules:
-- It is firmly advised to not hardcode any data within this level, utilise data objects instead.
+- It is firmly advised to not hard code any data within this level, utilize data objects instead.
 - Within push how down narrative, data is passed to page/component objects functions. 
 - Assertions are to be made within step definition level, gather data by functions from page/component objects and compare them using [testNG Assert](https://static.javadoc.io/org.testng/testng/6.8.17/org/testng/Assert.html) library 
 
@@ -276,9 +276,9 @@ General rules:
 
 ### Data Objects
 
-To utilise **Data Driven Testing** approach, it is advised to utilise data objects to allow maximum versatility of tests. By switching data objects we can manipulate how the test should behave.
+To utilize **Data Driven Testing** approach, it is advised to utilize data objects to allow maximum versatility of tests. By switching data objects we can manipulate how the test should behave.
 
-Data objects are .json files that store all neccessary data for the test execution such as:
+Data objects are .json files that store all necessary data for the test execution such as:
 - Credentials
 - Environments (*TBC*)
 - Product informations
