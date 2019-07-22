@@ -98,7 +98,7 @@ class SomeClass{
 ```
 
 ### Function names
-- Function name should clearly, without ambiguity indicate what given it does, so you dont have to jump across the code to find truth. 
+- Function name should clearly, without ambiguity indicate what it does, so you dont have to jump across the code to find truth. 
 - Every function is an action, therefore name should contain at least one verb that adheres to function usage.  
 - Like variables, functions should utilise camelCase writing convention.
   
