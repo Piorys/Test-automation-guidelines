@@ -1,8 +1,8 @@
 # Page/Component Objects
 
-- Whenever element of the page is seen on multiple pages, consider making it an component object, ie - upperbar/footer 
-- Keep Component Objects and Page Objects in separate directories
-- Keep following scheme of the Page Object or Component Object
+* Whenever element of the page is seen on multiple pages, consider making it an component object, ie - upperbar/footer 
+* Keep Component Objects and Page Objects in separate directories
+* Keep following scheme of the Page Object or Component Object
 
 ```java
 /**  package statement */
@@ -19,7 +19,7 @@ import x.y.z.utilities.common.Reporter;
 
 public class Minicart extends BasePo {
     /** locators */
-	private By cartTitle = By.xpath("//*[contains(@class,'title cc_title')]");
+    private By cartTitle = By.xpath("//*[contains(@class,'title cc_title')]");
     private By nextButton = By.css('button[name="continue"]')
     private By commentField = By.css('input[name="orderComments"]')
 
@@ -58,27 +58,26 @@ public class Minicart extends BasePo {
 }
 ```
 
-- Each function should comply with structure as shown above, keep comments as in example.  
-  
+* Each function should comply with structure as shown above, keep comments as in example.  
+
 General rules for Page/Component Objects:
-- Parametrize as much as possible within reason, hard coding information is not advisable.
-- If selector relies on some data that could change, consider creating a function that will return desired object  
-example:
-```java
-// Unadvisable
-private By profileName = By.xpath("//button[@id='userDropdown']//span//span[@class='invitation'][contains(text(),'Magda')]");
+
+* Parametrize as much as possible within reason, hard coding information is not advisable.
+* If selector relies on some data that could change, consider creating a function that will return desired object  
+
+  example:
+
+  \`\`\`java
+
+  // Unadvisable
+
+  private By profileName = By.xpath\("//button\[@id='userDropdown'\]//span//span\[@class='invitation'\]\[contains\(text\(\),'Magda'\)\]"\);
 
 // Better put it within function
 
-public By getProfileNameByElement(String profileName){
-    // Log
-    Reporter.addStepLog("Constructing 'By' element for profile name");
-    // Element
-    String locator = "//button[@id='userDropdown']//span//span[@class='invitation'][contains(text(),'" + profileName + "')]";
-    // Action
-    return By.xpath(locator);
-}
-```
+public By getProfileNameByElement\(String profileName\){ // Log Reporter.addStepLog\("Constructing 'By' element for profile name"\); // Element String locator = "//button\[@id='userDropdown'\]//span//span\[@class='invitation'\]\[contains\(text\(\),'" + profileName + "'\)\]"; // Action return By.xpath\(locator\); }
+
+```text
 - Each Page/Component object needs to be completely separate from other Page/Component objects.
 - Keep functions as granular as possible within reason, keep Single Responsibility Principle in mind. One function should do exactly one thing. Functions can be grouped in one in accordance to business logic if needed, ie 
 
@@ -91,5 +90,6 @@ public void passCredentialsAndLogin(String username, String password){
     this.fillUsername(username);
     this.fillPassword(password);
     this.clickLoginButton();
-}  
+}
 ```
+
