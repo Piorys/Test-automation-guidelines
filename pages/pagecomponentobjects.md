@@ -67,7 +67,7 @@ General rules for Page/Component Objects:
 
   example:
 
-  \`\`\`java
+```java
 
   // Unadvisable
 
@@ -77,7 +77,8 @@ General rules for Page/Component Objects:
 
 public By getProfileNameByElement\(String profileName\){ // Log Reporter.addStepLog\("Constructing 'By' element for profile name"\); // Element String locator = "//button\[@id='userDropdown'\]//span//span\[@class='invitation'\]\[contains\(text\(\),'" + profileName + "'\)\]"; // Action return By.xpath\(locator\); }
 
-```text
+```
+
 - Each Page/Component object needs to be completely separate from other Page/Component objects.
 - Keep functions as granular as possible within reason, keep Single Responsibility Principle in mind. One function should do exactly one thing. Functions can be grouped in one in accordance to business logic if needed, ie 
 
