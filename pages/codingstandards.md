@@ -62,7 +62,7 @@ Beginning with the prose form of the name:
   examples:
 
   ```java
-  isSomethingvisible();
+  isSomethingVisible();
   clickOnSomeButton(); 
   getThatPageMessageValue();
   doubleClickThatButton();
