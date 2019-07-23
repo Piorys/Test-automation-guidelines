@@ -63,12 +63,11 @@ public class Minicart extends BasePo {
 General rules for Page/Component Objects:
 
 * Parametrize as much as possible within reason, hard coding information is not advisable.
-* If selector relies on some data that could change, consider creating a function that will return desired object  
+* If selector relies on some data that could change, consider creating a function that will return desired object
 
   example:
 
 ```java
-
   // Unadvisable
 
   private By profileName = By.xpath\("//button[@id='userDropdown']//span//span[@class='invitation'][contains(text(),'Magda')]");
@@ -83,12 +82,10 @@ General rules for Page/Component Objects:
         // Action 
         return By.xpath(locator); 
         }
-
 ```
 
-- Each Page/Component object needs to be completely separate from other Page/Component objects.
-- Keep functions as granular as possible within reason, keep Single Responsibility Principle in mind. One function should do exactly one thing. Functions can be grouped in one in accordance to business logic if needed, ie 
-
+* Each Page/Component object needs to be completely separate from other Page/Component objects.
+* Keep functions as granular as possible within reason, keep Single Responsibility Principle in mind. One function should do exactly one thing. Functions can be grouped in one in accordance to business logic if needed, ie 
 
 ```java
 public void passCredentialsAndLogin(String username, String password){
