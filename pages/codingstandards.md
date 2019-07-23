@@ -75,11 +75,9 @@ Beginning with the prose form of the name:
 
 * Class names should be written using MixedCase, with every word having first letter capitalized
 
-  \`\`\`java
 
-  class SomeClass extends AnotherClass implements YetAnotherClass{
 
-}
+  `class SomeClass extends AnotherClass implements YetAnotherClass{}`
 
 ```text
 ## Packages
