@@ -30,5 +30,7 @@ Example Data Object:
 
 ## Data Parser
 
-TBD
+In order to access JSON data files a DataParser should be introduced..
+
+Example Data Parser for Java language can be found on repository - [https://github.com/Piorys/data-parser-java](https://github.com/Piorys/data-parser-java) 
 
