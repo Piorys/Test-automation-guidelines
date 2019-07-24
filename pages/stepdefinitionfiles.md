@@ -11,8 +11,8 @@ General rules:
 ```java
 @Then("^User will see success message about address update")
     public void iWillSeeSuccessMessageAboutAddressUpdate() throws InterruptedException  {
-    // Get expected value - TBD
-        String expectedMessage = dataParser
+        // Get expected value
+        String expectedMessage = dataParser.get("Expected Value");
         // Get actual value
         String actualMessage = accountDashboard.getSuccessMessage();
         // Assert values
