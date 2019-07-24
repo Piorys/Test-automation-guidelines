@@ -18,25 +18,27 @@ From [Google Java Style Guide](https://google.github.io/styleguide/javaguide.htm
 
 Beginning with the prose form of the name:
 
-* Convert the phrase to plain ASCII and remove any apostrophes. For example, "Muller's algorithm" might become "Mueller algorithm".
-* Divide this result into words, splitting on spaces and any remaining punctuation \(typically hyphens\).
+1. Convert the phrase to plain ASCII and remove any apostrophes. For example, "Muller's algorithm" might become "Mueller algorithm".
+2. Divide this result into words, splitting on spaces and any remaining punctuation \(typically hyphens\).
 
-    Recommended: if any word already has a conventional camel-case appearance in common usage, split this into its constituent parts \(e.g., "sWords" becomes "ad words"\). Note that a word such as "iOS" is not really in camel case per se; it defies any convention, so this recommendation does not apply.
+     Recommended: if any word already has a conventional camel-case appearance in common usage, split this into its constituent parts \(e.g., "sWords" becomes "ad words"\). Note that a word such as "iOS" is not really in camel case per se; it defies any convention, so this recommendation does not apply.
 
-* Now lowercase everything \(including acronyms\), then uppercase only the first character of:
+3. Now lowercase everything \(including acronyms\), then uppercase only the first character of:
 
-  ... each word, to yield upper camel case, or
+   ... each word, to yield upper camel case, or
 
-  ... each word except the first, to yield lower camel case
+   ... each word except the first, to yield lower camel case
 
-* Finally, join all the words into a single identifier.
+4. Finally, join all the words into a single identifier.
 
-  Examples:
+   Examples:
 
-  ```text
-  "my account page" -> myAccountPage  
-  "wait for loader" -> waitForLoader
-  ```
+   ```text
+   "my account page" -> myAccountPage  
+   "wait for loader" -> waitForLoader
+   ```
+
+
 
 * Class-scoped variables should have private access only and be initialized within constructor method
 
